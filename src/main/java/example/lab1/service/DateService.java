@@ -23,5 +23,4 @@ public class DateService {
 
         return "{\"currentZoneDateTime\":\"" + currentZoneDateTime + "\", \"gmtDateTime\":\"" + gmtDateTimeStr + "\"}";
     }
-
 }

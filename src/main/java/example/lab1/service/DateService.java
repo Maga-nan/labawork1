@@ -1,28 +1,27 @@
 package example.lab1.service;
 
-import example.lab1.dao.DateDAO;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+
+import java.time.Instant;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 @Service
 public class DateService {
-    private static DateDAO dateDAO;
 
-    public static String getDateInCurrentTimeZone(long timestamp) {
-        return DateDAO.getDateInCurrentTimeZone(timestamp);
+    public String convertTimestampToDate(long timestamp) {
+        OffsetDateTime dateTime = Instant.ofEpochMilli(timestamp)
+                .atZone(ZoneId.systemDefault())
+                .toOffsetDateTime();
+        String currentZoneDateTime = dateTime.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+
+        OffsetDateTime gmtDateTime = Instant.ofEpochMilli(timestamp)
+                .atZone(ZoneId.of("GMT"))
+                .toOffsetDateTime();
+        String gmtDateTimeStr = gmtDateTime.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+
+        return "{\"currentZoneDateTime\":\"" + currentZoneDateTime + "\", \"gmtDateTime\":\"" + gmtDateTimeStr + "\"}";
     }
-     @GetMapping("/convertDate")
-    public ResponseEntity<?> convertDate(@RequestParam("timestamp") String timestamp) {
-        try {
-            long timestampLong = Long.parseLong(timestamp);
 
-
-            if (timestampLong < 0) {
-                return ResponseEntity.badRequest().body("Invalid timestamp value");
-            }
-    public static String getDateInGMT(long timestamp) {
-        return dateDAO.getDateInGMT(timestamp);
-    }
 }

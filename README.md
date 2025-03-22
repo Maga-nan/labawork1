@@ -8,12 +8,4 @@
 
 2. Отправьте GET запрос на `/convertDate?timestamp=YOUR_TIMESTAMP` для преобразования временной метки в формат даты и времени.
 
-Пример запроса: [http://localhost:8081/convertDate?timestamp=1647536483000](http://localhost:8081/convertDate?timestamp=1647536483000)
-
-## API Endpoints
-
-- `GET /convertDate?timestamp=YOUR_TIMESTAMP`: Преобразование временной метки в формат даты и времени.
-
-## Автор
-
-Алексей
+Пример запроса: [http://localhost:8081/convertDate?timestamp=56](http://localhost:8081/convertDate?timestamp=56)
